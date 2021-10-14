@@ -73,19 +73,47 @@ namespace ProEventos.Application
            }
         }
 
-        public Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
+        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                 var eventos =await _eventoPersist.GetAllEventosAsync(includePalestrantes);
+                 if (eventos==null) throw new System.Exception("Eventos não encontrados!");
+                 return eventos;
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw new System.Exception(ex.Message);
+            }
         }
 
-        public Task<Evento[]> GetAllEventosAsyncByTema(string tema, bool includePalestrantes = false)
+        public async Task<Evento[]> GetAllEventosAsyncByTema(string tema, bool includePalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                 var eventos =await _eventoPersist.GetAllEventosAsyncByTema(tema, includePalestrantes);
+                 return eventos;
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw new System.Exception(ex.Message);
+            }
         }
 
-        public Task<Evento> GetEventoAsyncById(int EventoId, bool includePalestrantes = false)
+        public async Task<Evento> GetEventoAsyncById(int eventoId, bool includePalestrantes = false)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                 var eventos = await _eventoPersist.GetEventoAsyncById(eventoId, includePalestrantes);
+                 return eventos;
+            }
+            catch (System.Exception ex)
+            {
+                
+               throw new System.Exception(ex.Message);
+            }
         }
 
         
