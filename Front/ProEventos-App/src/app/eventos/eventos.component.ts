@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -9,8 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class EventosComponent implements OnInit {
 
   public eventos : any =[];
+  public eventosFiltrados : any =[];
   
-  constructor(private http : HttpClient) { }
+  constructor(private eventoService:EventoService) { }
 
   ngOnInit(): void {
 
@@ -18,9 +20,12 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): void{
-    this.http.get('https://localhost:5001/Eventos').subscribe(
-      response =>this.eventos = response,
-      error => console.log(error),
+    this.eventoService.getEvento().subscribe(
+      response =>{
+                  this.eventos = response,
+                  this.eventosFiltrados = this.eventos;
+    },
+      error => console.log(error)
       
     );
 
