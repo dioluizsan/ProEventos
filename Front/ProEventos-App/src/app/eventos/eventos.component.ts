@@ -16,11 +16,11 @@ export class EventosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getEventos();
+    this.geteventos();
   }
 
-  public getEventos(): void{
-    this.eventoService.getEvento().subscribe(
+  public geteventos(): void{
+    this.eventoService.getEventos().subscribe(
       response =>{
                   this.eventos = response,
                   this.eventosFiltrados = this.eventos;

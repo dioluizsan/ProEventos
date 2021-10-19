@@ -9,7 +9,7 @@ export class EventoService {
   baseURL = 'https://localhost:5001/Eventos';
 constructor(private http:HttpClient) { }
 
-  getEvento(){
+  getEventos(){
     return this.http.get(this.baseURL);
   } 
 
