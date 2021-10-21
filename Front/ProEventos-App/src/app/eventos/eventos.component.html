@@ -17,7 +17,8 @@
             <th>
                 <button type="button" class="btn btn-outline-light btn-sm"
                     (click)="alterarImagem()">
-                    {{!mostrarImagem ? 'ocultar' : 'mostrar'}}
+                    <i class="{{!mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                    {{!mostrarImagem ? 'ocultar' : 'exibir'}}
                 </button>
             </th>
 
@@ -48,10 +49,13 @@
             <td>{{evento.id}}</td>
             <td>{{evento.tema}}</td>
             <td>{{evento.local}}</td>
-            <td>{{evento.dataEvento}}</td>
+            <td>{{evento.dataEvento | DateFormatPipe}}</td>
             <td>{{evento.qtdPessoas}}</td>
             <td>{{evento.lote}}</td>
-            <td></td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm mr-2">Excluir</button>
+            </td>
         </tr>
     </tbody>
     <tfoot *ngIf="!eventos.length">
