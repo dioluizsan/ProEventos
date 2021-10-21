@@ -12,6 +12,11 @@ import { EventoService } from './services/evento.service';
 import { FormsModule } from '@angular/forms';
 import { DateTimeFormatPipePipe } from './helpers/DateTimeFormatPipe.pipe';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+
 @NgModule({
   declarations: [		
     AppComponent,
@@ -27,7 +32,10 @@ import { DateTimeFormatPipePipe } from './helpers/DateTimeFormatPipe.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
-    FormsModule
+    FormsModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [EventoService],
   bootstrap: [AppComponent]
