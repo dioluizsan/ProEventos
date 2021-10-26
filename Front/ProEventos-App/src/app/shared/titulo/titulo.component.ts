@@ -7,6 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TituloComponent implements OnInit {
   @Input() titulo: string | undefined;
+  @Input() subtitulo ="subtitulo";
+  @Input() icone ="";  
+  @Input() botaolistar = false;
   constructor() { }
 
   ngOnInit():void {
