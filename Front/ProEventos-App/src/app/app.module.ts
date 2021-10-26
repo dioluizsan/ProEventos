@@ -21,6 +21,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
+import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { TituloComponent } from './shared/titulo/titulo.component';
     PerfilComponent,
     DashboardComponent,
     ContatosComponent,
-    TituloComponent
+    TituloComponent,
+    EventoListaComponent,
+    EventoDetalheComponent
 
    ],
   imports: [
