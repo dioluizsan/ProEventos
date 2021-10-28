@@ -9,6 +9,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
   {path:'dashboard', component: DashboardComponent},
+  {path:'eventos',redirectTo:'eventos/lista'},
   {
     path:'eventos', component: EventosComponent,
     children:[
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path:'lista', component: EventoListaComponent},
     ]
   },
+  
   {path:'palestrantes', component: PalestrantesComponent},
   {path:'perfil', component: PerfilComponent},
   {path:'', redirectTo:'dashboard', pathMatch:'full'},

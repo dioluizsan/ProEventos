@@ -23,6 +23,9 @@ import { ContatosComponent } from './components/contatos/contatos.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { EventoDetalheComponent } from './components/eventos/evento-detalhe/even
     ContatosComponent,
     TituloComponent,
     EventoListaComponent,
-    EventoDetalheComponent
+    EventoDetalheComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent
 
    ],
   imports: [
