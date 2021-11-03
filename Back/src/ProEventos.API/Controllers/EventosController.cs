@@ -8,7 +8,7 @@ using ProEventos.Persistence;
 using ProEventos.Domain;
 using ProEventos.Application.Contratos;
 using Microsoft.AspNetCore.Http;
-
+using ProEventos.API.Dtos;
 
 namespace ProEventos.API.Controllers
 {
@@ -40,7 +40,7 @@ namespace ProEventos.API.Controllers
 
                          Id = evento.Id,
                          Local = evento.Local,
-                         DataEvento = evento.DataEvento.toString(),
+                         DataEvento = evento.DataEvento.ToString(),
                          Tema = evento.Tema,
                          QtdPessoas = evento.QtdPessoas,
                          ImagemURL = evento.ImagemURL,
