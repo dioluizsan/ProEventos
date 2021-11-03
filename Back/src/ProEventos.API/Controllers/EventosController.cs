@@ -31,7 +31,24 @@ namespace ProEventos.API.Controllers
             {
                 var eventos = await _eventoService.GetAllEventosAsync(true);
                 if(eventos==null) return NotFound("Nenhum evento encontrado!");
-                return Ok(eventos);
+
+                var eventosRetorno = new List<EventoDto>();
+
+                foreach (var evento in eventos)
+                {
+                    eventosRetorno.Add(new EventoDto(){
+
+                         Id = evento.Id,
+                         Local = evento.Local,
+                         DataEvento = evento.DataEvento.toString(),
+                         Tema = evento.Tema,
+                         QtdPessoas = evento.QtdPessoas,
+                         ImagemURL = evento.ImagemURL,
+                         Telefone = evento.Telefone,
+                         Email = evento.Email
+                    });
+                }
+                return Ok(eventosRetorno);
             }
             catch (System.Exception ex)
             {
