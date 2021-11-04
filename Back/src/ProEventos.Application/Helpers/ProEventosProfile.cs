@@ -12,6 +12,11 @@ namespace ProEventos.Application.Helpers
             //Linha de cima substitue as 2 linhas abaixo
             //CreateMap<Evento,EventoDto>();
             //CreateMap<EventoDto,Evento>();
+            
+            
+            CreateMap<Lote,LoteDto>().ReverseMap();
+            CreateMap<RedeSocial,RedeSocialDto>().ReverseMap();
+            CreateMap<Palestrante,PalestranteDto>().ReverseMap();
         }
     }
 }

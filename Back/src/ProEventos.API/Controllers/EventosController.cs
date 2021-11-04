@@ -45,7 +45,7 @@ namespace ProEventos.API.Controllers
            try
            {
                 var evento = await _eventoService.GetEventoAsyncById(id,true);
-                if (evento == null) return NotFound("Evento não encontrado!");
+                if (evento == null) return NoContent();//NotFound("Evento não encontrado!");
 
                 return Ok(evento);
            }
@@ -63,7 +63,7 @@ namespace ProEventos.API.Controllers
            try
            {
                 var evento = await _eventoService.GetAllEventosAsyncByTema(tema,true);
-                if (evento == null) return NotFound("Evento não encontrado!");
+                if (evento == null) return NoContent();//NotFound("Evento não encontrado!");
 
                 return Ok(evento);
            }
@@ -116,15 +116,16 @@ namespace ProEventos.API.Controllers
         public async Task<IActionResult> Delete(int id){
             try
             {
-                 var evento =await _eventoService.DeleteEvento(id);
-                if(evento)
-                {
-                    return Ok("Deletado");
-                }
-                else
-                {
-                    return BadRequest("Evento não deletado!");   
-                }
+                 var evento = await _eventoService.GetEventoAsyncById(id,true);
+
+                 
+                if(evento==null) return NoContent();
+                
+                return await _eventoService.DeleteEvento(id)? 
+                Ok("Deletado"): 
+                throw new System.Exception("Ocorreu um erro não especifico ao tentar Deletar o Evento.");
+                
+                
             }
             catch (System.Exception ex)
             {
