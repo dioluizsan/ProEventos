@@ -37,6 +37,7 @@ namespace ProEventos.API
             services.AddControllers()
             .AddNewtonsoftJson(X => X.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddScoped<IEventoService,EventoService>();
             services.AddScoped<IGeralPersist,GeralPersist>();
