@@ -1,4 +1,4 @@
-﻿
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +26,8 @@ namespace ProEventos.API.Controllers
             try
             {
                 var eventos = await _eventoService.GetAllEventosAsync(true);
-                if(eventos==null) return NotFound("Nenhum evento encontrado!");
+                 if (eventos == null) return NoContent();
+              
                 return Ok(eventos);
             }
             catch (System.Exception ex)
