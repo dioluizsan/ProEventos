@@ -22,13 +22,14 @@ import { Router } from '@angular/router';
 export class EventoListaComponent implements OnInit {
 
 
-
+  
   modalRef?: BsModalRef ;
   public eventos : any =[];
   public eventosFiltrados : any =[];
   larguraImg: number = 120;
   margemImg: number = 2;
   mostrarImagem: boolean = true;
+  eventoId : number = 0;
   private filtroListado = '';
   
   public get filtroLista():string{
@@ -82,7 +83,9 @@ export class EventoListaComponent implements OnInit {
     
   }
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(event: any , template: TemplateRef<any>, eventoId: number): void {
+    event.stopPropagation();
+    this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
  

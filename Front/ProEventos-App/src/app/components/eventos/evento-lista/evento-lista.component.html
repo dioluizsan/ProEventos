@@ -70,7 +70,7 @@
               <td class="d-none d-md-table-cell">{{evento.lote}}</td>
               <td>
                 
-                  <button type="button" class="btn btn-danger btn-sm mr-2" tooltip="Excluir" (click)="openModal(template)" ><i class="fa fa-trash"></i></button>
+                  <button type="button" class="btn btn-danger btn-sm mr-2" tooltip="Excluir" (click)="openModal($event,template,evento.Id)" ><i class="fa fa-trash"></i></button>
               </td>
           </tr>
       </tbody>
@@ -86,7 +86,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Do you want to confirm?</p>
+    <p>Tem certeza que quer deletar o evento com código?</p>
     <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
   </div>
