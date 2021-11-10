@@ -17,6 +17,7 @@ export class EventoDetalheComponent implements OnInit {
 
   eventoobj = {} as Evento;
   form!: FormGroup;
+  estadoSalvar = 'post';
 
   get f(): any {
     return this.form.controls;
@@ -48,6 +49,9 @@ export class EventoDetalheComponent implements OnInit {
 
     if(eventoId !== null){
       this.spinner.show();
+
+      this.estadoSalvar ='put';
+
       this.eventoService.getEventoById(+eventoId).subscribe(
         // next: () =>{this.eventoobj = Object.assign({},evento);}
         (evento: Evento) => {
@@ -96,20 +100,42 @@ export class EventoDetalheComponent implements OnInit {
   public salvarEvento():void {
     this.spinner.show();
 
-    if (this.form.value){
-      this.eventoobj = {...this.form.value};
+    if (this.form.valid){
+      
 
-      this.eventoService.postEvento(this.eventoobj).subscribe(
-        () => this.toastr.success('Evento Salvo com sucesso!', 'Sucesso'),
-        (error: any) => {
-          console.error(error);
-          this.spinner.hide();
-          this.toastr.error('Erro ao tentar salvar o evento!', 'Error')
-        },
-        () => this.spinner.hide()
-      )
+      if(this.estadoSalvar=='post'){ //post
+
+        this.eventoobj = {...this.form.value};
+
+        this.eventoService.postEvento(this.eventoobj).subscribe(
+          () => this.toastr.success('Evento Salvo com sucesso!', 'Sucesso'),
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao tentar salvar o evento!', 'Error')
+          },
+          () => this.spinner.hide()
+        );
+      }
+      else{ //put
+
+        this.eventoobj = {id:this.eventoobj.id, ...this.form.value};
+
+        this.eventoService.putEvento(this.eventoobj.id,this.eventoobj).subscribe(
+          () => this.toastr.success('Evento Salvo com sucesso!', 'Sucesso'),
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao tentar salvar o evento!', 'Error')
+          },
+          () => this.spinner.hide()
+        );
+      }
+
 
     }
   }
+
+
 
 }
