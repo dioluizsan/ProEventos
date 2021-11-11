@@ -23,7 +23,7 @@ export class EventoDetalheComponent implements OnInit {
     return this.form.controls;
   }
 
-  get bsconfig():any {
+  get bsConfig():any {
     return { 
             isAnimated: true , 
             adaptivePosition: true, 
@@ -50,7 +50,7 @@ export class EventoDetalheComponent implements OnInit {
     if(eventoId !== null){
       this.spinner.show();
 
-      this.estadoSalvar ='put';
+      this.estadoSalvar = 'put';
 
       this.eventoService.getEventoById(+eventoId).subscribe(
         // next: () =>{this.eventoobj = Object.assign({},evento);}
@@ -61,7 +61,7 @@ export class EventoDetalheComponent implements OnInit {
         // error: () =>{}
         (error: any) => {
                           this.spinner.hide();
-                          this.toastr.error('Erro no carregamento do Evento');
+                          this.toastr.error('Erro no carregamento do Evento','Erro!');
                           console.error(error);
                         }, 
         // complete: () =>{}
@@ -97,42 +97,36 @@ export class EventoDetalheComponent implements OnInit {
     return {'is-invalid': campoForm.errors && campoForm.touched};
   }
 
-  public salvarEvento():void {
+  public salvarEvento(): void {
     this.spinner.show();
-
-    if (this.form.valid){
-      
-
-      if(this.estadoSalvar=='post'){ //post
-
-        this.eventoobj = {...this.form.value};
-
-        this.eventoService.postEvento(this.eventoobj).subscribe(
-          () => this.toastr.success('Evento Salvo com sucesso!', 'Sucesso'),
+    if (this.form.valid) {
+      if(this.estadoSalvar == 'post'){
+        this.eventoobj ={ ...this.form.value };
+        this.eventoService[this.estadoSalvar](this.eventoobj).subscribe(
+          () => this.toastr.success('Evento salvo com Sucesso!', 'Sucesso'),
           (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao tentar salvar o evento!', 'Error')
+            this.toastr.error('Error ao salvar evento', 'Erro');
           },
           () => this.spinner.hide()
         );
       }
-      else{ //put
-
-        this.eventoobj = {id:this.eventoobj.id, ...this.form.value};
-
-        this.eventoService.putEvento(this.eventoobj.id,this.eventoobj).subscribe(
-          () => this.toastr.success('Evento Salvo com sucesso!', 'Sucesso'),
+      else if(this.estadoSalvar == 'put'){
+        this.eventoobj ={ id: this.eventoobj.id, ...this.form.value };
+        this.eventoService[this.estadoSalvar](this.eventoobj).subscribe(
+          () => this.toastr.success('Evento salvo com Sucesso!', 'Sucesso'),
           (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao tentar salvar o evento!', 'Error')
+            this.toastr.error('Error ao salvar evento', 'Erro');
           },
           () => this.spinner.hide()
         );
       }
+     
 
-
+     
     }
   }
 
